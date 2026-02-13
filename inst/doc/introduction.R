@@ -14,7 +14,7 @@ data(faithful)
 x_data <- faithful$eruptions
 
 # 1. Standard R histogram (Sturges rule by default)
-par(mfrow = c(1, 2))
+oldpar <- par(mfrow = c(1, 2))
 hist(x_data, main = "Standard hist()", xlab = "Duration of Eruptions", col = "gray90")
 
 # 2. Shimazaki-Shinomoto Optimization
@@ -24,7 +24,7 @@ hist(x_data, breaks=res$edges,
        main=paste("Optimal Hist (N=", res$opt_n, ")"),
        xlab = "Duration of Eruptions", col = "gray90")
 
-par(mfrow = c(1, 1))
+par(oldpar)
 
 ## ----optimal params-----------------------------------------------------------
 print(res)
