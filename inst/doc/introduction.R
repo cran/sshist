@@ -1,15 +1,16 @@
 ## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment  = "#>",
-  fig.width = 7
+  collapse  = TRUE,
+  comment   = "#>",
+  fig.width = 7,
+  fig.align = "center"
 )
 
 ## ----setup, message=FALSE, warning=FALSE--------------------------------------
 library(sshist)
 options(sshist.ncores = 2) # Use 2 cores for vignette building
 
-## ----comparison, fig.asp = 0.5------------------------------------------------
+## ----comparison, fig.height = 3.8---------------------------------------------
 data(faithful)
 x_data <- faithful$eruptions
 
@@ -28,21 +29,21 @@ hist(x_data, breaks = res$edges,
 
 par(oldpar)
 
-## ----sshist-print-------------------------------------------------------------
+## ----sshist-print, fig.height = 4---------------------------------------------
 print(res)
 plot(res)
 
-## ----sskernel, fig.asp = 0.6--------------------------------------------------
+## ----sskernel, fig.height = 4-------------------------------------------------
 res_k <- sskernel(x_data)
 print(res_k)
 plot(res_k, xlab = "Eruption duration (min)")
 
-## ----ssvkernel, fig.asp = 0.6-------------------------------------------------
+## ----ssvkernel, fig.height = 4------------------------------------------------
 res_sv <- ssvkernel(x_data)
 print(res_sv)
 plot(res_sv, xlab = "Eruption duration (min)")
 
-## ----bootstrap-example, fig.asp = 0.6-----------------------------------------
+## ----bootstrap-example, fig.height = 4----------------------------------------
 # Run 300 bootstrap iterations using 2 cores
 res_boot <- sskernel(x_data, nbs = 300)
 print(res_boot)
@@ -65,14 +66,14 @@ plot(res_sv_boot,
      col = "#d6604d", 
      band_col = adjustcolor("#d6604d", alpha.f = 0.2))
 
-## ----sshist-2d, fig.asp = 0.85------------------------------------------------
+## ----sshist-2d, fig.width = 6, fig.height = 6---------------------------------
 res_2d <- sshist_2d(faithful$waiting, faithful$eruptions)
 print(res_2d)
 
 # plot() renders the optimal 2D histogram as a heatmap
 plot(res_2d, xlab = "Waiting time (min)", ylab = "Eruption duration (min)")
 
-## ----kde2d-fixed, fig.asp = 1-------------------------------------------------
+## ----kde2d-fixed, fig.width = 6, fig.height = 6-------------------------------
 df <- faithful   # eruptions: ~2-5 min,  waiting: ~40-90 min
 
 # Fixed global bandwidth (C++ accelerated)
@@ -82,7 +83,7 @@ plot(res_2d_fixed,
      xlab = "Eruption duration (min)",
      ylab = "Waiting time (min)")
 
-## ----kde2d-adap, fig.asp = 1--------------------------------------------------
+## ----kde2d-adap, fig.width = 6, fig.height = 6--------------------------------
 # Locally adaptive bandwidth (Abramson's method)
 res_2d_adap <- ssvkernel2d(df$eruptions, df$waiting,
                             n_grid = 256, sensitivity = 0.5)

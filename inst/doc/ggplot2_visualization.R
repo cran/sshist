@@ -1,9 +1,8 @@
 ## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment  = "#>",
+  collapse  = TRUE,
+  comment   = "#>",
   fig.width = 7,
-  fig.height = 5,
   fig.align = "center"
 )
 
@@ -18,7 +17,7 @@ if (has_ggplot2) {
   theme_set(theme_minimal(base_size = 12))
 }
 
-## ----ggplot-sshist, eval = has_ggplot2----------------------------------------
+## ----ggplot-sshist, fig.height = 4, eval = has_ggplot2------------------------
 data(faithful)
 
 # 1. Calculate optimal binning parameters
@@ -41,7 +40,7 @@ ggplot(faithful, aes(x = waiting)) +
     y = "Density"
   )
 
-## ----ggplot-kde-1d, fig.height=7, eval = has_ggplot2--------------------------
+## ----ggplot-kde-1d, fig.height = 4, eval = has_ggplot2------------------------
 # Define a shared grid for perfect alignment
 shared_grid <- seq(min(faithful$waiting), max(faithful$waiting), length.out = 500)
 
@@ -69,7 +68,7 @@ ggplot(df_density, aes(x = time, y = density, color = Estimator)) +
   ) +
   theme(legend.position = "top")
 
-## ----ggplot-winfunc-comparison, fig.height=4, eval = has_ggplot2--------------
+## ----ggplot-winfunc-comparison, fig.height = 4, eval = has_ggplot2------------
 # Run adaptive estimators with all available window functions
 res_boxcar  <- ssvkernel(faithful$waiting, tin = shared_grid, WinFunc = "Boxcar")
 res_gauss   <- ssvkernel(faithful$waiting, tin = shared_grid, WinFunc = "Gauss")
@@ -98,7 +97,7 @@ ggplot(df_winfunc, aes(x = time, y = density, color = Window)) +
   ) +
   theme(legend.position = "right")
 
-## ----ggplot-sshist2d, fig.asp=0.85, eval = has_ggplot2------------------------
+## ----ggplot-sshist2d, fig.width = 6, fig.height = 6, eval = has_ggplot2-------
 res_hist2d <- sshist_2d(faithful$eruptions, faithful$waiting)
 
 # Extract optimal bin counts or widths if explicit
@@ -121,7 +120,7 @@ ggplot(faithful, aes(x = eruptions, y = waiting)) +
     fill = "Count"
   )
 
-## ----ggplot-kde2d, fig.width=11, fig.height=5.5, eval = has_ggplot2-----------
+## ----ggplot-kde2d, fig.width = 11, fig.height = 5.5, eval = has_ggplot2-------
 # Compute densities on a 150x150 evaluation grid
 grid_res <- 150
 res_2d_fixed <- sskernel2d(faithful$waiting, faithful$eruptions, n_grid = grid_res)
