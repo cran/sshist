@@ -1,7 +1,7 @@
 Type: Package
 Package: sshist
 Title: Optimal Density Estimation via Shimazaki-Shinomoto Method
-Version: 0.2.3
+Version: 0.2.4
 Authors@R: person("Daniil", "Popov", , "popov.daniil@gmail.com", role = c("aut", "cre"))
 Description: Implements the Shimazaki-Shinomoto method for optimizing the
     bin width of histograms and the bandwidth of kernel density estimators.
@@ -24,8 +24,8 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Config/roxygen2/version: 8.0.0
 Language: en-US
-Packaged: 2026-07-14 19:21:21 UTC; celebithil
+Packaged: 2026-07-17 10:00:29 UTC; celebithil
 Author: Daniil Popov [aut, cre]
 Maintainer: Daniil Popov <popov.daniil@gmail.com>
 Repository: CRAN
-Date/Publication: 2026-07-15 07:50:02 UTC
+Date/Publication: 2026-07-17 15:50:09 UTC
